@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <a href="{{ url_for('delete', todo_id=todo.id) }}" class="btn btn-danger">Delete</a>
     <h3>{{ todo.content }}</h3>
     <small>{{ todo.date.strftime('%Y-%m-%d') }}</small>
 {% endblock %}

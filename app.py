@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -17,7 +17,6 @@ class Todo(db.Model):
 		return f'Todo({self.id} - {self.content} - {self.date})'
 
 
-
 @app.route('/')
 def home():
 	todos = Todo.query.all()
@@ -29,10 +28,18 @@ def about():
 	return render_template('about.html')
 
 
-@app.route('/<todo_id>')
+@app.route('/<int:todo_id>')
 def detail(todo_id):
 	todo = Todo.query.get(todo_id)
 	return render_template('detail.html', todo=todo)
+
+
+@app.route('/delete/<int:todo_id>')
+def delete(todo_id):
+	todo = Todo.query.get(todo_id)
+	db.session.delete(todo)
+	db.session.commit()
+	return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
