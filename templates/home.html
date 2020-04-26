@@ -4,5 +4,12 @@
 
 
 {% block content %}
-    <h3>Hello {{ name|capitalize }} </h3>
+    <div class="card">
+        {% for todo in todos %}
+            <div class="card-body">
+                <h3>{{ todo.content }}</h3>
+                <small>{{ todo.date.strftime('%Y-%m-%d') }}</small>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
