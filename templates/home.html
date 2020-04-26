@@ -7,7 +7,7 @@
     <div class="card">
         {% for todo in todos %}
             <div class="card-body">
-                <h3>{{ todo.content }}</h3>
+                <h3><a href="{{ url_for('detail', todo_id=todo.id) }}">{{ todo.content }}</a></h3>
                 <small>{{ todo.date.strftime('%Y-%m-%d') }}</small>
             </div>
         {% endfor %}

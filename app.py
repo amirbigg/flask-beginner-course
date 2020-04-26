@@ -29,5 +29,11 @@ def about():
 	return render_template('about.html')
 
 
+@app.route('/<todo_id>')
+def detail(todo_id):
+	todo = Todo.query.get(todo_id)
+	return render_template('detail.html', todo=todo)
+
+
 if __name__ == '__main__':
 	app.run(debug=True)
