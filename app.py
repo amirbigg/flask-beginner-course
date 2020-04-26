@@ -1,7 +1,21 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask.db'
+db = SQLAlchemy(app)
+
+
+class Todo(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	content = db.Column(db.Text, unique=True, nullable=False)
+	date = db.Column(db.DateTime, default=datetime.now)
+
+	def __repr__(self):
+		return f'Todo({self.id} - {self.content} - {self.date})'
+
 
 
 @app.route('/')
