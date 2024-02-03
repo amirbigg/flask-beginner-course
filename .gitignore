@@ -2,8 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,flask,venv
 
 ### Flask ###
-instance/*
-!instance/.gitignore
+
 .webassets-cache
 .env
 
@@ -68,8 +67,7 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
+
 
 # Flask stuff:
 instance/
